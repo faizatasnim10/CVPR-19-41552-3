@@ -1,0 +1,250 @@
+//if else
+
+.model small
+.stack 100h
+.data
+
+msg1 db "user input is greater than 5$"
+msg2 db "user input is less than 5$"
+msg3 db "user input is equal to 5$"
+
+.code
+
+main proc
+    
+    mov ax,@data
+    mov ds,ax
+    
+    mov bl,5
+    
+    mov ah,1
+    int 21h
+    sub al,48
+    mov bh,al
+    
+    MOV DL,0DH
+    MOV AH,2
+    INT 21H   
+    MOV DL,0AH
+    INT 21H
+    
+    cmp bh,bl
+    jg grt
+    jl less
+    je equal
+    
+grt:   
+    lea dx,msg1
+    mov ah,9
+    int 21h
+    jmp exit
+less:   
+    lea dx,msg2
+    mov ah,9
+    int 21h
+    jmp exit
+equal:
+    lea dx,msg3
+    mov ah,9
+    int 21h
+    jmp exit    
+
+exit:
+    mov ah,ch
+    int 21h    
+    
+    main endp
+end main
+======================================================================================
+// identify uppercase and lowercase chars
+
+.model small
+.stack 100h
+.data
+
+msg1 db "This is a upper case letter$"
+msg2 db "This is not a upper case letter$"
+
+.code
+
+main proc
+    
+    mov ax,@data
+    mov ds,ax
+    
+    mov bl,5
+    
+    mov ah,1
+    int 21h
+    mov bh,al
+    
+    MOV DL,0DH
+    MOV AH,2
+    INT 21H   
+    MOV DL,0AH
+    INT 21H
+    
+    cmp bh,'A'
+    jnge end_if
+    
+    cmp bh,'Z'
+    jnle end_if
+        
+   
+    lea dx,msg1
+    mov ah,9
+    int 21h
+    jmp exit
+    
+end_if:   
+    lea dx,msg2
+    mov ah,9
+    int 21h
+    jmp exit
+        
+
+exit:
+    mov ah,ch
+    int 21h    
+    
+    main endp
+end main
+
+=====================================================================================
+//loops
+
+.model small
+.stack 100h
+.data
+
+L1 db "(: Hello World :) $"
+
+.code
+
+main proc
+    
+    mov ax,@DATA
+    mov ds,ax
+    mov cx,5
+
+level1:
+
+    lea dx,L1
+    mov ah,9
+    int 21h
+    
+    MOV DL,0DH
+    MOV AH,2
+    INT 21H   
+    MOV DL,0AH
+    INT 21H
+    
+    dec cx
+    jnz level1 ; jump if not zero
+    ;jmp level1 ; continuous loop 
+    
+    main endp
+end main
+
+=================================================================
+//input A---output 10 like
+
+.model small
+.stack 100h
+.data
+.code
+
+main proc
+    mov ah,1
+    int 21h
+    mov bl,al
+           
+    mov dl,0dh
+    mov ah,2
+    int 21h
+    mov dl,0ah
+    int 21h
+    
+    
+    mov dl,'1'
+    mov ah,2
+    int 21h
+    
+    sub bl,17
+    mov dl,bl
+    mov ah,2
+    int 21h
+    
+    main endp
+end main
+===============================================================================
+//PRINT MESSAGE
+
+.MODEL SMALL
+.STACK 100H
+.DATA 
+msg1 db "Name:Md. Alinur Hossain$"
+msg2 db "ID: 20-41855-1$"
+msg3 db "Spring$"
+
+.CODE
+
+MAIN PROC
+    MOV AX,@DATA
+    MOV DS,AX
+    
+    LEA DX,msg1
+    MOV AH,9
+    INT 21H
+    
+    MOV DL,0DH
+    MOV AH,2
+    INT 21H   
+    MOV DL,0AH
+    INT 21H 
+    
+    LEA DX,msg2
+    MOV AH,9
+    INT 21H
+    
+    MOV DL,0DH
+    MOV AH,2
+    INT 21H   
+    MOV DL,0AH
+    INT 21H
+    
+    LEA DX,msg3
+    MOV AH,9
+    INT 21H
+    
+    
+MAIN ENDP
+END MAIN
+================================================================
+//lower case to upper case
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+
+MAIN PROC
+    
+MOV AH,1
+INT 21H
+MOV BL,AL
+
+MOV DL,0DH
+MOV AH,2
+INT 21H
+MOV DL,0AH
+INT 21H
+
+SUB BL,32
+MOV DL,BL
+MOV AH,2
+INT 21H 
+    
+MAIN ENDP
+END MAIN
+==============================================================

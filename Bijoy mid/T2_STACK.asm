@@ -1,0 +1,19 @@
+.MODEL SMALL
+.STACK 100H
+
+.CODE
+MAIN PROC  
+    MOV AX,1234H
+    MOV BX,5678H
+    MOV CX,9ABCH
+    
+    PUSH AX 
+    PUSH BX 
+    XCHG AX,CX 
+    POP CX
+    PUSH AX 
+    POP BX 
+
+    
+MAIN ENDP
+END MAIN
