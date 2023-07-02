@@ -1,0 +1,111 @@
+B.2.
+.model small
+.stack 100h
+.data   
+msg db "Input : $"
+.code 
+main proc 
+    mov ax,@data
+    mov ds,ax
+    
+    mov ah,9
+    lea dx,msg 
+    int 21h 
+    
+    mov ah,1 
+    int 21h
+    
+    
+    
+   
+    add al,32
+    mov ah,2
+    
+    mov dl,al
+    int 21h
+    
+    
+    mov ah,4ch
+    main endp
+end main
+
+
+c.1
+
+.model small
+.stack 100h 
+.data
+a db 0
+b db 0   
+c db 0
+.code
+  mov ah,1
+  mov a,al
+  int 21h   
+  mov ah,1
+  mov b,al
+  int 21h
+  mov ah,1
+  mov b,al
+  int 21h
+
+  add al,a
+  add  al,b
+  mov bl,al
+  add bl,c
+  sub bl,48
+  mov ah,2
+
+mov dl,bl 
+
+int 21h
+
+2.
+
+.model small
+.stack 100h 
+.data
+
+.code
+main proc
+    mov ax,2
+    mov bx,6
+    mov cx,7
+    
+    cmp ax,bx
+    jl fly1
+    jmp fly2
+    
+    fly2:
+    mov ah,2
+    mov dl,48
+    int 21h
+    jmp exit
+    
+    fly1:
+    cmp bx,cx
+    jl fly3
+    jmp fly2
+    
+    fly3:
+    mov ah,2
+    mov dl,49
+    int 21h
+    
+    exit :
+    mov ah,76
+    int 21h
+    main endp
+end main
+    
+    
+
+
+
+
+
+
+
+
+
+
