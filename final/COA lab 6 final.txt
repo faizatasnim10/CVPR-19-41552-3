@@ -1,0 +1,156 @@
+//////////////////////////////1//////////////////////
+
+.model small
+.stack 100h
+.data
+.code
+main proc
+    mov cx,80
+    print:
+    mov ah,2
+    mov dl,'*'
+    int 21h
+    mov dl,10
+    int 21h
+    mov dl,13
+    int 21h
+    
+    dec cx
+    jnz print
+    
+    mov ah,4ch
+    int 21h
+    main endp
+end main
+
+/////////////////////////2/////////////////////////
+
+.model small
+.stack 100h
+.data
+msg1 db "o$"
+msg2 db "e$"
+.code
+main proc
+    mov ax,@Data
+    mov ds,ax
+    
+    mov bl,3
+    
+    cmp bl,1
+    je level1
+    cmp bl,3
+    je level1
+    
+    cmp bl,2
+    je level2
+    cmp bl,4
+    je level2
+    
+    level1:
+    mov ah,9
+    lea dx,msg1
+    int 21h
+    jmp exit
+    
+    level2:
+    mov ah,9
+    lea dx,msg2
+    int 21h
+    jmp exit
+    
+    exit:
+    mov ah,4ch
+    int 21h
+    main endp
+end main
+
+////////////3//////////
+
+.model small
+.stack 100h
+.data
+msg1 db "greater$"
+msg2 db "less$" 
+msg3 db "Zero$"
+.code
+main proc
+    mov ax,@Data
+    mov ds,ax
+    
+    mov ah,1
+    int 21h
+    
+    mov bh,al
+    mov bl,30h
+    
+    cmp bh,bl
+    
+    jg greater
+    jl less
+    jz zero
+    
+    
+    greater:
+    mov ah,9
+    lea dx,msg1
+    int 21h
+    jmp exit
+    
+    less:
+    mov ah,1
+    int 21h
+    mov ah,9
+    lea dx,msg2
+    int 21h
+    jmp exit
+    
+    zero:
+    mov ah,9
+    lea dx,msg3
+    int 21h
+    jmp exit
+    
+    
+    exit:
+    mov ah,4ch
+    int 21h
+    main endp
+end main
+
+
+////////////////////////////// 4 /////////////////////////////////////
+
+.model small
+.stack 100h
+.data
+.code
+main proc
+    mov cx,256 
+    mov bl,00h
+    
+    
+    level:
+    mov ah,2
+    mov dl,bl
+    int 21h
+    
+    
+    mov dl,10
+    int 21h
+    mov dl,13
+    int 21h
+    
+     
+    dec cx
+    inc bl
+    jnz level
+    
+    mov ah,4ch
+    int 21h
+    main endp
+end main
+
+
+
+

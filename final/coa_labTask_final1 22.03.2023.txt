@@ -1,0 +1,101 @@
+1.//1+5+9+13+17
+
+.model small
+.stack 100h
+.data  
+ans dw ?       
+value dw  ?
+
+.code
+main proc
+    mov ax,@data
+    mov ds,ax
+    
+    mov cx,50
+    mov ax,0
+    mov bx,1
+    
+    sum:
+    mov value,bx  
+    
+    add ax,bx 
+    
+    add bx,4  
+    
+    mov ans,ax  
+    
+    
+    loop sum 
+    
+    
+    main endp
+    
+    end main
+
+  2.// print the 50th value
+
+.model small
+.stack 100h
+.data  
+ans dw ?       
+;value dw
+
+.code
+main proc
+    mov ax,@data
+    mov ds,ax
+    
+    mov cx,20
+    mov ax,0
+    mov bx,100
+    
+    sum: 
+    
+    ;sub ax,bx 
+    add ax,bx
+    mov ans,ax
+    sub bx,5 
+    
+    mov ans,ax
+    
+    loop sum  
+    
+    main endp
+    
+    end main
+
+3.// print 255 characters
+
+.model small
+.stack 100h
+.data  
+ans dw ?       
+;value dw
+
+.code
+main proc
+    mov ax,@data
+    mov ds,ax
+    
+    mov cx,255
+    mov bl,00h
+    
+   print: 
+    
+    mov ah,2
+    mov dl,bl
+    int 21h  
+    inc bl  
+    
+    
+    mov ah,2
+    mov dl,13
+    int 21h
+    mov dl,10
+    int 21h
+    
+    loop print  
+    
+    main endp
+    
+    end main

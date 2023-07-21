@@ -1,0 +1,33 @@
+org 100h 
+.data
+msg db "Hello World$"
+msg1 db "Sunny Day$"
+
+.code
+
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 9
+    lea dx, msg 
+    int 21h 
+    call nextline
+    mov ah, 9
+    lea dx, msg1
+    int 21h
+main endp
+
+nextline proc
+    mov ah,2
+    mov dl, 10
+    
+    int 21h
+    mov dl, 13
+    int 21h
+nextline endp
+ret
+    
+    
+
+
